@@ -4,12 +4,13 @@
 #
 Name     : ipython-sql
 Version  : 0.3.8
-Release  : 3
+Release  : 4
 URL      : https://pypi.python.org/packages/4b/4d/d62e65d8f501a305f45ff0b5a317163b742ea0c61e01ae85595ef5d1a54f/ipython-sql-0.3.8.tar.gz
 Source0  : https://pypi.python.org/packages/4b/4d/d62e65d8f501a305f45ff0b5a317163b742ea0c61e01ae85595ef5d1a54f/ipython-sql-0.3.8.tar.gz
 Summary  : RDBMS access via IPython
 Group    : Development/Tools
 License  : MIT
+Requires: ipython-sql-python3
 Requires: ipython-sql-python
 Requires: SQLAlchemy
 Requires: ipython
@@ -31,17 +32,25 @@ BuildRequires : sqlparse
 Patch1: build.patch
 
 %description
-===========
 ipython-sql
-===========
-:Author: Catherine Devlin, http://catherinedevlin.blogspot.com
+        ===========
 
 %package python
 Summary: python components for the ipython-sql package.
 Group: Default
+Requires: ipython-sql-python3
 
 %description python
 python components for the ipython-sql package.
+
+
+%package python3
+Summary: python3 components for the ipython-sql package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the ipython-sql package.
 
 
 %prep
@@ -49,8 +58,11 @@ python components for the ipython-sql package.
 %patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1490372745
+export SOURCE_DATE_EPOCH=1517942409
 python3 setup.py build -b py3
 
 %install
@@ -64,5 +76,8 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 
 %files python
+%defattr(-,root,root,-)
+
+%files python3
 %defattr(-,root,root,-)
 /usr/lib/python3*/*
