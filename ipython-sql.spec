@@ -24,7 +24,7 @@ BuildRequires : ipython_genutils
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : prettytable
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : six
