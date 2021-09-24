@@ -4,7 +4,7 @@
 #
 Name     : ipython-sql
 Version  : 0.4.0
-Release  : 34
+Release  : 35
 URL      : https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f9/6a/286fa8e95db0567b50e2e207f9e45d65223b51b43fc5614729e4275c074b/ipython-sql-0.4.0.tar.gz
 Summary  : RDBMS access via IPython
@@ -27,6 +27,7 @@ BuildRequires : prettytable
 BuildRequires : six
 BuildRequires : sqlparse
 Patch1: 0001-Add-missing-NEWS.rst-file.patch
+Patch2: 0002-Unpin-prettytable-dependency.patch
 
 %description
 ipython-sql
@@ -69,13 +70,14 @@ python3 components for the ipython-sql package.
 %setup -q -n ipython-sql-0.4.0
 cd %{_builddir}/ipython-sql-0.4.0
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1630625204
+export SOURCE_DATE_EPOCH=1632445807
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
